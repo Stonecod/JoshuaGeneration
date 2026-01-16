@@ -1,5 +1,6 @@
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 120px;
 }
 
 :root {
@@ -24,6 +25,7 @@ body {
   background: var(--bg-color);
   color: var(--text-color);
   line-height: 1.7;
+  font-weight: 400;
 }
 
 h1, h2, h3 {
@@ -58,11 +60,11 @@ h1, h2, h3 {
   margin-left: 22px;
   font-size: 15px;
   font-weight: 500;
-  color: var(--text-color);
+  color:#003366;
 }
 
-.nav-menu a:hover {
-  color: var(--primary-color);
+.nav-menu a:hover, .nav-menu a:active {
+  color: #c8102e;
 }
 
 .hero {
@@ -156,8 +158,8 @@ section p {
   text-align: center;
 }
 
-.visit-details p {
-  font-size: 16px;
+ol li {
+  font-weight: 600;
 }
 
 .services ul {
