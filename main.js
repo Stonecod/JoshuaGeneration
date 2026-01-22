@@ -1,111 +1,106 @@
-function generateCalendar() {
-  const container = document.getElementById('calendar-container');
-  container.innerHTML = ''; // Clear previous content
+document.addEventListener("DOMContentLoaded", () => {
 
-  const year = 2026;
-  const month = 0; // January
-  const monthName = "January";
+  function generateCalendar() {
+    const container = document.getElementById('calendar-container');
+    if (!container) return;
 
-  // Month title
-  const title = document.createElement('h4');
-  title.textContent = monthName + ' ' + year;
-  container.appendChild(title);
+    container.innerHTML = '';
 
-  // Create table
-  const table = document.createElement('table');
-  table.className = 'calendar';
+    const year = 2026;
+    const month = 0;
+    const monthName = "January";
 
-  // Table header
-  const thead = document.createElement('thead');
-  const headerRow = document.createElement('tr');
-  const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
-  for (let d of days) {
-    const th = document.createElement('th');
-    th.textContent = d;
-    headerRow.appendChild(th);
-  }
-  thead.appendChild(headerRow);
-  table.appendChild(thead);
+    const title = document.createElement('h4');
+    title.textContent = monthName + ' ' + year;
+    container.appendChild(title);
 
-  // Table body
-  const tbody = document.createElement('tbody');
-  const firstDay = new Date(year, month, 1).getDay();
-  const totalDays = new Date(year, month + 1, 0).getDate();
-  let row = document.createElement('tr');
+    const table = document.createElement('table');
+    table.className = 'calendar';
 
-  // Empty cells before first day
-  for (let i = 0; i < firstDay; i++) {
-    row.appendChild(document.createElement('td'));
-  }
+    const thead = document.createElement('thead');
+    const headerRow = document.createElement('tr');
+    const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-  // Fill in the days
-  for (let day = 1; day <= totalDays; day++) {
-    if (row.children.length === 7) {
-      tbody.appendChild(row);
-      row = document.createElement('tr');
+    days.forEach(d => {
+      const th = document.createElement('th');
+      th.textContent = d;
+      headerRow.appendChild(th);
+    });
+
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = document.createElement('tbody');
+    const firstDay = new Date(year, month, 1).getDay();
+    const totalDays = new Date(year, month + 1, 0).getDate();
+
+    let row = document.createElement('tr');
+
+    for (let i = 0; i < firstDay; i++) {
+      row.appendChild(document.createElement('td'));
     }
 
-    const cell = document.createElement('td');
-    cell.textContent = day;
+    for (let day = 1; day <= totalDays; day++) {
+      if (row.children.length === 7) {
+        tbody.appendChild(row);
+        row = document.createElement('tr');
+      }
 
-    // Highlight Sundays and Wednesdays
-    const weekday = (firstDay + day - 1) % 7;
-    if (weekday === 0) {
-      cell.className = 'service-day';
-      cell.title = 'Sunday Worship: 8:00am';
-    } else if (weekday === 3) {
-      cell.className = 'bible-study-day';
-      cell.title = 'Bible Study: 6:00pm';
+      const cell = document.createElement('td');
+      cell.textContent = day;
+
+      const weekday = (firstDay + day - 1) % 7;
+      if (weekday === 0) {
+        cell.className = 'service-day';
+        cell.title = 'Sunday Worship: 8:00am';
+      } else if (weekday === 3) {
+        cell.className = 'bible-study-day';
+        cell.title = 'Bible Study: 6:00pm';
+      }
+
+      row.appendChild(cell);
     }
 
-    row.appendChild(cell);
+    if (row.children.length) tbody.appendChild(row);
+
+    table.appendChild(tbody);
+    container.appendChild(table);
   }
 
-  // Append last row
-  if (row.children.length > 0) tbody.appendChild(row);
+  const toggleBtn = document.getElementById('toggle-calendar');
+  const calendarDiv = document.getElementById('calendar-container');
+  let generated = false;
 
-  table.appendChild(tbody);
-  container.appendChild(table);
-}
+  if (toggleBtn) {
+    toggleBtn.addEventListener('click', () => {
+      if (!generated) {
+        generateCalendar();
+        generated = true;
+      }
 
-// Toggle button
-const toggleBtn = document.getElementById('toggle-calendar');
-const calendarDiv = document.getElementById('calendar-container');
-let generated = false;
-
-toggleBtn.addEventListener('click', () => {
-  if (!generated) {
-    generateCalendar();
-    generated = true;
+      if (calendarDiv.style.display === 'none' || calendarDiv.style.display === '') {
+        calendarDiv.style.display = 'block';
+        toggleBtn.textContent = 'Hide Calendar';
+      } else {
+        calendarDiv.style.display = 'none';
+        toggleBtn.textContent = 'Show Calendar';
+      }
+    });
   }
-  if (calendarDiv.style.display === 'none' || calendarDiv.style.display === '') {
-    calendarDiv.style.display = 'block';
-    toggleBtn.textContent = 'Hide Calendar';
-  } else {
-    calendarDiv.style.display = 'none';
-    toggleBtn.textContent = 'Show Calendar';
+
+  const hamburger = document.getElementById("hamburger");
+  const navMenu = document.querySelector(".nav-menu");
+
+  if (hamburger && navMenu) {
+    hamburger.addEventListener("click", () => {
+      navMenu.classList.toggle("show");
+    });
+
+    document.querySelectorAll(".nav-menu a").forEach(link => {
+      link.addEventListener("click", () => {
+        navMenu.classList.remove("show");
+      });
+    });
   }
-});
 
-const sections = document.querySelectorAll("section");
-const navLinks = document.querySelectorAll(".nav-link");
-
-window.addEventListener("scroll", () => {
-  let currentSection = "";
-
-  sections.forEach(section => {
-    const sectionTop = section.offsetTop - 120;
-    const sectionHeight = section.offsetHeight;
-
-    if (pageYOffset >= sectionTop && pageYOffset < sectionTop + sectionHeight) {
-      currentSection = section.getAttribute("id");
-    }
-  });
-
-  navLinks.forEach(link => {
-    link.classList.remove("active");
-    if (link.getAttribute("href") === `#${currentSection}`) {
-      link.classList.add("active");
-    }
-  });
 });
