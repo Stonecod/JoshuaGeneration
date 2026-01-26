@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+  /* ================= CALENDAR ================= */
   function generateCalendar() {
     const container = document.getElementById('calendar-container');
     if (!container) return;
@@ -11,7 +12,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const monthName = "January";
 
     const title = document.createElement('h4');
-    title.textContent = monthName + ' ' + year;
+    title.textContent = `${monthName} ${year}`;
     container.appendChild(title);
 
     const table = document.createElement('table');
@@ -21,9 +22,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const headerRow = document.createElement('tr');
     const days = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"];
 
-    days.forEach(d => {
+    days.forEach(day => {
       const th = document.createElement('th');
-      th.textContent = d;
+      th.textContent = day;
       headerRow.appendChild(th);
     });
 
@@ -51,18 +52,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
       const weekday = (firstDay + day - 1) % 7;
       if (weekday === 0) {
-        cell.className = 'service-day';
+        cell.classList.add('service-day');
         cell.title = 'Sunday Worship: 8:00am';
       } else if (weekday === 3) {
-        cell.className = 'bible-study-day';
+        cell.classList.add('bible-study-day');
         cell.title = 'Bible Study: 6:00pm';
       }
 
       row.appendChild(cell);
     }
 
-    if (row.children.length) tbody.appendChild(row);
-
+    tbody.appendChild(row);
     table.appendChild(tbody);
     container.appendChild(table);
   }
@@ -71,36 +71,48 @@ document.addEventListener("DOMContentLoaded", () => {
   const calendarDiv = document.getElementById('calendar-container');
   let generated = false;
 
-  if (toggleBtn) {
+  if (toggleBtn && calendarDiv) {
     toggleBtn.addEventListener('click', () => {
       if (!generated) {
         generateCalendar();
         generated = true;
       }
 
-      if (calendarDiv.style.display === 'none' || calendarDiv.style.display === '') {
-        calendarDiv.style.display = 'block';
-        toggleBtn.textContent = 'Hide Calendar';
-      } else {
-        calendarDiv.style.display = 'none';
-        toggleBtn.textContent = 'Show Calendar';
-      }
+      const isHidden =
+        calendarDiv.style.display === 'none' ||
+        calendarDiv.style.display === '';
+
+      calendarDiv.style.display = isHidden ? 'block' : 'none';
+      toggleBtn.textContent = isHidden ? 'Hide Calendar' : 'Show Calendar';
     });
   }
 
+  /* ================= MOBILE MENU ================= */
   const hamburger = document.getElementById("hamburger");
   const navMenu = document.querySelector(".nav-menu");
+  const closeMenuBtn = document.getElementById("close-menu");
 
   if (hamburger && navMenu) {
     hamburger.addEventListener("click", () => {
-      navMenu.classList.toggle("show");
-    });
-
-    document.querySelectorAll(".nav-menu a").forEach(link => {
-      link.addEventListener("click", () => {
-        navMenu.classList.remove("show");
-      });
+      navMenu.classList.add("show");
+      hamburger.classList.add("show");
     });
   }
 
+  if (closeMenuBtn && navMenu) {
+    closeMenuBtn.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+      hamburger.classList.remove("show");
+    });
+  }
+
+  document.querySelectorAll(".nav-menu a").forEach(link => {
+    link.addEventListener("click", () => {
+      navMenu.classList.remove("show");
+      hamburger.classList.remove("show");
+    });
+  });
+
 });
+
+
