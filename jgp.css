@@ -24,7 +24,7 @@ body {
   font-family: var(--font-main);
   color: var(--text-color);
   background: #f0f4ff;
-  line-height: 1.7;
+  line-height: 1.6;
   font-weight: 400;
   background-image: 
     radial-gradient(circle at 20% 50%, rgba(26, 109, 255, 0.05) 0%, transparent 50%),
@@ -40,6 +40,10 @@ h1, h2, h3 {
   color: #111827;
 }
 
+h4 {
+  text-align: center;
+}
+
 .site-header {
   background:rgba(255, 255, 255, 0.9);
   backdrop-filter: blur(6px);
@@ -52,14 +56,14 @@ h1, h2, h3 {
   
   max-width: 1100px;
   margin: auto;
-  padding: 16px 20px;
+  padding: 12px 20px;
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
 
 .logo img {
-  width: 65px;
+  width: 50px;
   border-radius: 50%;
 }
 
@@ -306,8 +310,9 @@ ol li {
 
 .calendar {
   width: 100%;
+  max-width: 100%;
   border-collapse: collapse;
-  margin-top: 16px;
+  margin: 16px auto;
   background: #ffffff;
 }
 
@@ -324,12 +329,14 @@ ol li {
 }
 
 .calendar td.service-day {
-  background: #fff4cc;
+  background: #22c55e;
+  color: #ffffff;
   font-weight: 600;
 }
 
 .calendar td.bible-study-day {
-  background: #e7efff;
+  background: #8b5cf6;
+  color: #ffffff;
   font-weight: 600;
 }
 
@@ -353,11 +360,11 @@ ol li {
 }
 
 .calendar-legend .service-day {
-  background: #fff4cc;
+  background: #22c55e;
 }
 
 .calendar-legend .bible-study-day {
-  background: #e7efff;
+  background: #8b5cf6;
 }
 
 .contact-details p {
@@ -484,6 +491,87 @@ ol li {
 
 /* ================= MOBILE ================= */
 @media (max-width: 600px) {
+  html {
+    scroll-padding-top: 70px;
+  }
+
+  .hero h1 {
+    font-size: 24px;
+    margin-bottom: 12px;
+  }
+
+  .hero-subtitle {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .hero-service {
+    font-size: 13px;
+    margin-bottom: 20px;
+  }
+
+  .hero-btn {
+    padding: 12px 28px;
+    font-size: 14px;
+  }
+
+  section {
+    max-width: 100%;
+    margin: 30px auto;
+    padding: 30px 16px;
+  }
+
+  section h3 {
+    font-size: 20px;
+    margin-bottom: 16px;
+  }
+
+  section p {
+    font-size: 14px;
+    max-width: 100%;
+  }
+
+  .social-links h4 {
+    font-size: 16px;
+  }
+
+  .contact-details p {
+    font-size: 14px;
+  }
+
+  .services ul li {
+    font-size: 14px;
+    padding: 12px;
+  }
+
+  .meet-link {
+    font-size: 14px;
+  }
+
+  .calendar {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+  .calendar th,
+  .calendar td {
+    padding: 6px 4px;
+    font-size: 11px;
+    text-align: center;
+  }
+
+  .calendar-legend {
+    font-size: 12px;
+    gap: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .calendar-legend .legend-item {
+    width: 14px;
+    height: 14px;
+    margin-right: 4px;
+  }
 
   .nav-menu {
     position: fixed;
@@ -516,5 +604,17 @@ ol li {
 
   .hamburger {
     display: flex;
+  }
+
+  body {
+    line-height: 1.5;
+  }
+
+  .logo img {
+    width: 45px;
+  }
+
+  .header-container {
+    padding: 10px 16px;
   }
 }
