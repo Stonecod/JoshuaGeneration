@@ -70,6 +70,7 @@ h4 {
 .nav-menu {
   display: flex;
   gap: 1.5rem;
+  background-color: transparent;
   backdrop-filter: none;
 }
 
@@ -183,8 +184,6 @@ section {
   border-radius: 15px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.06);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-size: cover;
-  background-position: center;
   position: relative;
 }
 
@@ -195,7 +194,7 @@ section::before {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(255, 255, 255, 0.35);
+  background: transparent;
   border-radius: 15px;
   z-index: 1;
 }
@@ -242,83 +241,9 @@ section ul {
   z-index: 2;
 }
 
-.about {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
+/* All sections inherit --card-bg background via base section rule */
 
-.about::before {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.services-preview {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.services-preview::before {
-  background: rgba(255, 255, 255, 0.5);
-}
-
-.home-cta {
-  background-image: url(images/bluegradientbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-/* About Page Sections */
-.about-page .about-intro {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.about-page .who-we-are {
-  background-image: url(images/bluegradientbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.about-page .beliefs {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.about-page .our-focus {
-  background-image: url(images/bluegradientbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-.about-page .about-cta {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-/* Mission Page Sections */
-.mission-page .mission {
-  background-image: url(images/bluegradientbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-/* Contact Page Sections */
-.contact-page .contact {
-  background-image: url(images/worshipbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
-
-/* Calendar Page Sections */
-.calendar-page .calendar-preview {
-  background-image: url(images/bluegradientbackground.jpg);
-  background-size: cover;
-  background-position: center;
-}
+/* All section backgrounds now use --card-bg via base rule */
 
 .about-page {
   background-color: #f0f4ff;
@@ -684,13 +609,13 @@ section ul {
     right: 0;
     width: 220px;
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.98);
-    backdrop-filter: blur(10px);
+    background-color: #e8ecf7 !important;
+    backdrop-filter: none !important;
     padding: 20px 16px;
-    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.2);
+    box-shadow: -4px 0 20px rgba(0, 0, 0, 0.25);
     display: none;
     flex-direction: column;
-    z-index: 1100;
+    z-index: 1200;
   }
 
   /* show menu when active */
