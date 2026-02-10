@@ -8,8 +8,8 @@ document.addEventListener("DOMContentLoaded", () => {
     container.innerHTML = '';
 
     const year = 2026;
-    const month = 0;
-    const monthName = "January";
+    const month = 1;
+    const monthName = "February";
 
     const title = document.createElement('h4');
     title.textContent = `${monthName} ${year}`;
