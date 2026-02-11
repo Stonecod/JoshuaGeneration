@@ -17,5 +17,5 @@ Structuring a real website project
 Styling responsive layouts
 Deploying a live site with GitHub Pages.
 
-Author
+Author:
 Philip Balogun

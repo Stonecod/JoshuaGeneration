@@ -92,10 +92,19 @@ document.addEventListener("DOMContentLoaded", () => {
   const navMenu = document.querySelector(".nav-menu");
   const closeMenuBtn = document.getElementById("close-menu");
 
+  function lockScroll() {
+    document.body.classList.add("scroll-lock");
+  }
+
+  function unlockScroll() {
+    document.body.classList.remove("scroll-lock");
+  }
+
   if (hamburger && navMenu) {
     hamburger.addEventListener("click", () => {
       navMenu.classList.add("show");
       hamburger.classList.add("show");
+      lockScroll();
     });
   }
 
@@ -103,6 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
     closeMenuBtn.addEventListener("click", () => {
       navMenu.classList.remove("show");
       hamburger.classList.remove("show");
+      unlockScroll();
     });
   }
 
@@ -110,6 +120,7 @@ document.addEventListener("DOMContentLoaded", () => {
     link.addEventListener("click", () => {
       navMenu.classList.remove("show");
       hamburger.classList.remove("show");
+      unlockScroll();
     });
   });
 
