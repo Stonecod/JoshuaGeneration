@@ -39,6 +39,28 @@ body.scroll-lock {
   overflow: hidden;
 }
 
+body.scroll-lock::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1100;
+  animation: fadeIn 0.3s ease forwards;
+  pointer-events: none;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 h1, h2, h3 {
   font-weight: 600;
   color: #111827;
@@ -573,12 +595,18 @@ section ul {
   display: none;
   background: none;
   border: none;
-  color: var(--text-color);
+  color: #ffffff;
   font-size: 1.8rem;
   cursor: pointer;
   z-index: 1300;
   align-self: flex-end;
   line-height: 1;
+  font-weight: 300;
+  transition: opacity 0.2s ease;
+}
+
+#close-menu:hover {
+  opacity: 0.8;
 }
 
 /* Show X only when menu is open */
