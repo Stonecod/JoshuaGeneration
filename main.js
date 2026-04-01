@@ -7,9 +7,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     container.innerHTML = '';
 
-    const year = 2026;
-    const month = 1;
-    const monthName = "February";
+const today = new Date();
+const year = today.getFullYear();
+const month = today.getMonth();
+
+const monthNames = [
+  "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December" 
+];
+
+const monthName = monthNames [month];
 
     const title = document.createElement('h4');
     title.textContent = `${monthName} ${year}`;
